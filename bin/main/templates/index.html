@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andi Arjuna - Photography Portfolio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <img th:src="@{${photographer.profileImageUrl}}" alt="Profile Photo" class="profile-img" 
+                 onerror="this.src='https://via.placeholder.com/150?text=Andi+Arjuna'">
+            
+            <h1 th:text="${photographer.name}">Andi Arjuna</h1>
+            
+            <p class="specialty" th:text="${'Specialty: ' + photographer.specialty}"></p>
+            
+            <p class="experience" th:text="${'Experience: ' + photographer.yearsOfExperience + ' years (' + photographer.getExperienceLabel() + ')'}"></p>
+        </div>
+
+        <div class="bio-section">
+            <h2>My Quote</h2>
+            <p id="quoteDisplay" class="quote-placeholder">Click the button to see my quote</p>
+            <button id="showQuoteBtn" class="btn">Show My Quote</button>
+            <button id="hideQuoteBtn" class="btn">Hide Quote</button>
+        </div>
+
+        <div class="gear-section">
+            <h2>Camera Gear</h2>
+            <button id="toggleGearBtn" class="btn">Hide Camera Gear</button>
+            <div id="cameraGearList">
+                <ul>
+                    <li th:each="gear : ${cameraGear}" th:text="${gear}"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="portfolio-table">
+            <h2>Recent Projects</h2>
+            <table>
+                <tr>
+                    <th>Project</th>
+                    <th>Location</th>
+                    <th>Year</th>
+                </tr>
+                <tr>
+                    <td>Mountain Sunrise</td>
+                    <td>Mount Bromo</td>
+                    <td>2024</td>
+                </tr>
+                <tr>
+                    <td>Street Stories</td>
+                    <td>Yogyakarta</td>
+                    <td>2023</td>
+                </tr>
+                <tr>
+                    <td>Wedding Moments</td>
+                    <td>Bali</td>
+                    <td>2024</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
